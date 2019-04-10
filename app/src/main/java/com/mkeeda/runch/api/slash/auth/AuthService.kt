@@ -1,8 +1,8 @@
 package com.mkeeda.runch.api.slash.auth
 
 import com.mkeeda.runch.api.ApiRequestInterceptor
-import com.mkeeda.runch.domain.entity.AccessToken
-import com.mkeeda.runch.domain.entity.RequestToken
+import com.mkeeda.runchdomain.entity.AccessToken
+import com.mkeeda.runchdomain.entity.RequestToken
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.Headers

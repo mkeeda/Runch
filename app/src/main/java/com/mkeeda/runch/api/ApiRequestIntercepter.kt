@@ -1,6 +1,6 @@
 package com.mkeeda.runch.api
 
-import com.mkeeda.runch.domain.foundation.UserSession
+import com.mkeeda.runchdomain.foundation.UserSession
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
