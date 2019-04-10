@@ -1,3 +1,3 @@
 package com.mkeeda.runchdomain.foundation
 
-data class UserSession (val token: String)
+data class UserSession (var token: String = "")
