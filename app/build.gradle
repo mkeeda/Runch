@@ -15,7 +15,13 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "gnaviApiKey", Runch_gnaviApiKey
+            resValue "string", "gnavi_api_key", Runch_gnaviApiKey
+        }
         release {
+            buildConfigField "String", "gnaviApiKey", Runch_gnaviApiKey
+            resValue "string", "gnavi_api_key", Runch_gnaviApiKey
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
