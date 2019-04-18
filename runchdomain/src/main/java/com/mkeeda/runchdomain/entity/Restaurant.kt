@@ -1,6 +1,6 @@
 package com.mkeeda.runchdomain.entity
 
-import java.util.*
+import java.util.Date
 
 data class Restaurant(
     val id: String,
