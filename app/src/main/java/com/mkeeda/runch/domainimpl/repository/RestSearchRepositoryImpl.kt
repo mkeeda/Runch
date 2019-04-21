@@ -17,7 +17,12 @@ class RestSearchRepositoryImpl: RestSearchRepository {
     override fun retrieveRandom5ByLocation(latitude: Double, longitude: Double): Single<List<Restaurant>> {
         return restSearchService.searchRestByLocation(latitude = latitude, longitude = longitude)
             .map {
-                it.rest
+                val shuffledList = it.rest.shuffled()
+                if (it.hit_per_page >= 5) {
+                    shuffledList.subList(fromIndex = 0, toIndex = 4)
+                } else {
+                    shuffledList
+                }
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

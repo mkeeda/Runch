@@ -45,7 +45,9 @@ class RootActivity : AppCompatActivity() {
 
         RestSearchRepositoryImpl(retrofit = retrofit).retrieveRandom5ByLocation(latitude = 35.682444, longitude = 139.773611)
             .subscribe { item ->
-                println("⭐$item")
+                item.forEach {
+                    println("⭐${it.id}")
+                }
             }.disposed(by = disposeBag)
     }
 
