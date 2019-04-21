@@ -15,7 +15,13 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "gnaviApiKey", Runch_gnaviApiKey
+            resValue "string", "gnavi_api_key", Runch_gnaviApiKey
+        }
         release {
+            buildConfigField "String", "gnaviApiKey", Runch_gnaviApiKey
+            resValue "string", "gnavi_api_key", Runch_gnaviApiKey
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -36,10 +42,12 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
     implementation "com.squareup.moshi:moshi:$moshi_version"
     implementation "com.squareup.moshi:moshi-adapters:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
     implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
     implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    implementation project(path: ':runchdomain')
 }
