@@ -5,22 +5,20 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".RootActivity">
+        tools:context=".view.RootActivity"
+        android:id="@+id/root_layout_frame">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-    <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="selected"
-            tools:layout_editor_absoluteY="458dp"
-            tools:layout_editor_absoluteX="161dp"/>
-
+    <fragment
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:navGraph="@navigation/nav_graph"
+            app:defaultNavHost="true"
+            tools:layout_editor_absoluteY="8dp"
+            tools:layout_editor_absoluteX="8dp"
+            android:id="@+id/fragment2"
+            app:layout_constraintTop_toTopOf="@id/root_layout_frame"
+            app:layout_constraintRight_toRightOf="@id/root_layout_frame"
+            app:layout_constraintLeft_toLeftOf="@id/root_layout_frame"
+            app:layout_constraintBottom_toBottomOf="@id/root_layout_frame"
+            android:layout_height="0dp"
+            android:layout_width="0dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

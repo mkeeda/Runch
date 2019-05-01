@@ -1,8 +1,9 @@
-package com.mkeeda.runch
+package com.mkeeda.runch.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.mkeeda.runch.R
 import com.mkeeda.runch.api.gnavi.GnaviApiRequestInterceptor
 import com.mkeeda.runch.domainimpl.repository.RestSearchRepositoryImpl
 import com.mkeeda.runchdomain.extension.disposed
@@ -17,7 +18,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.*
 
 class RootActivity : AppCompatActivity() {
-    val disposeBag = CompositeDisposable()
+    private val disposeBag = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
