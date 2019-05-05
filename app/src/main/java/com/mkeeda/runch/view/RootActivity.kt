@@ -23,33 +23,6 @@ class RootActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_root)
-
-        val httpClientBuilder = OkHttpClient.Builder()
-        httpClientBuilder
-            .addInterceptor(GnaviApiRequestInterceptor())
-            .addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .build()
-
-        val moshiConverterFactory = MoshiConverterFactory.create(
-            Moshi.Builder()
-                .add(Date::class.java, Rfc3339DateJsonAdapter())
-                .add(KotlinJsonAdapterFactory())
-                .build())
-        val rxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.gnavi.co.jp")
-            .addConverterFactory(moshiConverterFactory)
-            .addCallAdapterFactory(rxJava2CallAdapterFactory)
-            .client(httpClientBuilder.build())
-            .build()
-
-        RestSearchRepositoryImpl(retrofit = retrofit).retrieveRandom5ByLocation(latitude = 35.682444, longitude = 139.773611)
-            .subscribe { item ->
-                item.forEach {
-                    println("⭐${it.id}")
-                }
-            }.disposed(by = disposeBag)
     }
 
     override fun onDestroy() {
