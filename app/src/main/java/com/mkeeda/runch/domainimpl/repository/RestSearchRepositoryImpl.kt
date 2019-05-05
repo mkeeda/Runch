@@ -8,12 +8,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 
-class RestSearchRepositoryImpl: RestSearchRepository {
-    private val restSearchService: RestSearchService
+class RestSearchRepositoryImpl(retrofit: Retrofit) : RestSearchRepository {
+    private val restSearchService: RestSearchService = retrofit.create(RestSearchService::class.java)
 
-    constructor(retrofit: Retrofit) {
-        this.restSearchService = retrofit.create(RestSearchService::class.java)
-    }
     override fun retrieveRandom5ByLocation(latitude: Double, longitude: Double): Single<List<Restaurant>> {
         return restSearchService.searchRestByLocation(latitude = latitude, longitude = longitude)
             .map {
