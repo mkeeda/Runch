@@ -44,15 +44,30 @@
                 tools:text="category"
                 android:textAppearance="?attr/textAppearanceBody2" />
 
-        <TextView
-                android:id="@+id/rest_card_access_walk"
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:layout_marginBottom="8dp"
-                tools:text="access walk"
-                android:textAppearance="?attr/textAppearanceBody2" />
+                android:paddingEnd="8dp">
+
+            <TextView
+                    android:id="@+id/rest_card_access_walk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    tools:text="access walk"
+                    android:textAppearance="?attr/textAppearanceBody2" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/rest_card_access_walk_unit"
+                    android:textAppearance="?attr/textAppearanceBody2" />
+        </LinearLayout>
+
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
 
