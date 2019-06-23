@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Runch</string>
+    <string name="rest_image_description">restaurant image</string>
+    <string name="rest_card_access_walk_unit">分</string>
 </resources>
