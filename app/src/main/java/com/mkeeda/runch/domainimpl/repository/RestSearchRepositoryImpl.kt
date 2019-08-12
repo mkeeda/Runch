@@ -16,7 +16,7 @@ class RestSearchRepositoryImpl(retrofit: Retrofit) : RestSearchRepository {
             .map {
                 val shuffledList = it.rest.shuffled()
                 if (it.hit_per_page >= 5) {
-                    shuffledList.subList(fromIndex = 0, toIndex = 4)
+                    shuffledList.subList(fromIndex = 0, toIndex = 5)
                 } else {
                     shuffledList
                 }
