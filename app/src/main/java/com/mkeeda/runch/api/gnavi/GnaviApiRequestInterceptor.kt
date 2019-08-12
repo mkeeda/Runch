@@ -8,7 +8,7 @@ class GnaviApiRequestInterceptor: Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
         val originalUrl = originalRequest
-            .url()
+            .url
             .newBuilder()
         val apiKey = BuildConfig.gnaviApiKey
 

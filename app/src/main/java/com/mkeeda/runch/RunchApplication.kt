@@ -10,6 +10,6 @@ class RunchApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        RunchApplication.singleton = SingletonComponent()
+        singleton = SingletonComponent()
     }
 }
