@@ -1,6 +1,5 @@
 package com.mkeeda.runch.component
 
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.mkeeda.runch.api.gnavi.GnaviApiRequestInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
@@ -30,12 +29,10 @@ class SingletonComponent {
                         .add(Date::class.java, Rfc3339DateJsonAdapter())
                         .add(KotlinJsonAdapterFactory())
                         .build())
-        val rxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create()
 
         return Retrofit.Builder()
                 .baseUrl("https://api.gnavi.co.jp")
                 .addConverterFactory(moshiConverterFactory)
-                .addCallAdapterFactory(rxJava2CallAdapterFactory)
                 .client(httpClientBuilder.build())
                 .build()
     }

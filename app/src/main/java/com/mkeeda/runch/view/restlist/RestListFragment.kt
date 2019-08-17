@@ -9,15 +9,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mkeeda.runch.R
-import com.mkeeda.runchdomain.extension.disposed
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.subscribeBy
-import kotlinx.android.synthetic.main.rest_list_fragment.restlist_recycler_view
 import kotlinx.android.synthetic.main.rest_list_fragment.view.restlist_recycler_view
 
 class RestListFragment : Fragment() {
     private lateinit var viewModel: RestListViewModel
-    private val disposeBag = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,21 +36,16 @@ class RestListFragment : Fragment() {
     }
 
     private fun setupViewModelBinding() {
-        this.viewModel.restList.subscribeBy(
-            onNext = {
-                val adapter = restlist_recycler_view.adapter
-                if (adapter is RestCardRecyclerViewAdapter) {
-                    adapter.update(it)
-                }
-            },
-            onError = {
-                print(it)
-            }
-        ).disposed(by = disposeBag)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        this.disposeBag.clear()
+//        this.viewModel.restList.subscribeBy(
+//            onNext = {
+//                val adapter = restlist_recycler_view.adapter
+//                if (adapter is RestCardRecyclerViewAdapter) {
+//                    adapter.update(it)
+//                }
+//            },
+//            onError = {
+//                print(it)
+//            }
+//        ).disposed(by = disposeBag)
     }
 }
