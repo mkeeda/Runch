@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.mkeeda.runch.R
 import kotlinx.android.synthetic.main.rest_list_fragment.view.restlist_recycler_view
 
 class RestListFragment : Fragment() {
-    private lateinit var viewModel: RestListViewModel
+    private val viewModel: RestListViewModel by lazy {
+        ViewModelProvider(this, RestListViewModelFactory()).get(RestListViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(RestListViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -24,28 +24,12 @@ class RestListFragment : Fragment() {
                               savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.rest_list_fragment, container, false)
-        view.restlist_recycler_view.setHasFixedSize(true)
-        view.restlist_recycler_view.layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
-        view.restlist_recycler_view.adapter = RestCardRecyclerViewAdapter()
+        val adapter = RestCardRecyclerViewAdapter()
+        view.restlist_recycler_view.adapter = adapter
+        viewModel.rests.observe(this) {
+            adapter.update(it)
+        }
+        viewModel.loadRestaurants()
         return view
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        this.setupViewModelBinding()
-    }
-
-    private fun setupViewModelBinding() {
-//        this.viewModel.restList.subscribeBy(
-//            onNext = {
-//                val adapter = restlist_recycler_view.adapter
-//                if (adapter is RestCardRecyclerViewAdapter) {
-//                    adapter.update(it)
-//                }
-//            },
-//            onError = {
-//                print(it)
-//            }
-//        ).disposed(by = disposeBag)
     }
 }

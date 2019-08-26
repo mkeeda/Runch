@@ -19,9 +19,12 @@ class SingletonComponent {
 
     private fun createRetrofit(): Retrofit {
         val httpClientBuilder = OkHttpClient.Builder()
+        val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+            this.level = HttpLoggingInterceptor.Level.BODY
+        }
         httpClientBuilder
                 .addInterceptor(GnaviApiRequestInterceptor())
-                .addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addNetworkInterceptor(httpLoggingInterceptor)
                 .build()
 
         val moshiConverterFactory = MoshiConverterFactory.create(

@@ -1,5 +1,7 @@
 package com.mkeeda.runchdomain.repository
 
+import com.mkeeda.runchdomain.entity.Restaurant
+
 interface RestSearchRepository {
-//    fun retrieveRandom5ByLocation(latitude: Double, longitude: Double): List<Restaurant>
+    suspend fun retrieveByLocation(latitude: Double, longitude: Double): List<Restaurant>
 }
