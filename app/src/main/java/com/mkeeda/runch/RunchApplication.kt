@@ -5,11 +5,13 @@ import com.mkeeda.runch.component.SingletonComponent
 
 class RunchApplication: Application() {
     companion object {
-        var singleton: SingletonComponent? = null
+        private var _singleton: SingletonComponent? = null
+        val singleton: SingletonComponent
+            get() = _singleton ?: throw IllegalStateException("Singleton component is not initialized")
     }
 
     override fun onCreate() {
         super.onCreate()
-        singleton = SingletonComponent()
+        _singleton = SingletonComponent()
     }
 }
