@@ -1,14 +1,24 @@
 package com.mkeeda.runch.view.restlist
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mkeeda.runch.RunchApplication
-import com.mkeeda.runch.domainimpl.repository.RestSearchRepositoryImpl
+import androidx.lifecycle.viewModelScope
 import com.mkeeda.runchdomain.entity.Restaurant
-import io.reactivex.Observable
+import com.mkeeda.runchdomain.repository.RestSearchRepository
+import kotlinx.coroutines.launch
 
-class RestListViewModel : ViewModel() {
-    val restList: Observable<List<Restaurant>>
-        get() = RestSearchRepositoryImpl(retrofit = RunchApplication.singleton!!.retrofit)
-            .retrieveRandom5ByLocation(latitude = 35.682444, longitude = 139.773611)
-            .toObservable()
+class RestListViewModel(
+    private val restSearchRepository: RestSearchRepository
+) : ViewModel() {
+    val rests = MutableLiveData<List<Restaurant>>()
+
+    fun loadRestaurants() {
+        viewModelScope.launch {
+            try {
+                rests.value = restSearchRepository.retrieveByLocation(latitude = 35.682444, longitude = 139.773611)
+            } catch (error: Throwable) {
+                println(error)
+            }
+        }
+    }
 }

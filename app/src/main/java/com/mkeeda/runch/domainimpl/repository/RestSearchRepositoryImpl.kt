@@ -3,25 +3,18 @@ package com.mkeeda.runch.domainimpl.repository
 import com.mkeeda.runch.api.gnavi.RestSearchService
 import com.mkeeda.runchdomain.entity.Restaurant
 import com.mkeeda.runchdomain.repository.RestSearchRepository
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 
 class RestSearchRepositoryImpl(retrofit: Retrofit) : RestSearchRepository {
     private val restSearchService: RestSearchService = retrofit.create(RestSearchService::class.java)
 
-    override fun retrieveRandom5ByLocation(latitude: Double, longitude: Double): Single<List<Restaurant>> {
-        return restSearchService.searchRestByLocation(latitude = latitude, longitude = longitude)
-            .map {
-                val shuffledList = it.rest.shuffled()
-                if (it.hit_per_page >= 5) {
-                    shuffledList.subList(fromIndex = 0, toIndex = 5)
-                } else {
-                    shuffledList
-                }
-            }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+    override suspend fun retrieveByLocation(latitude: Double, longitude: Double): List<Restaurant> {
+        return withContext(Dispatchers.IO) {
+            restSearchService
+                .searchRestByLocation(latitude = latitude, longitude = longitude)
+                .rest
+        }
     }
 }
