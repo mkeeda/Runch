@@ -40,10 +40,10 @@ dependencies {
     // AndroidX library
     implementation "androidx.appcompat:appcompat:$appcompat"
     implementation "androidx.core:core-ktx:$core_ktx"
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
     implementation "androidx.navigation:navigation-fragment:$navigation" // For Kotlin use navigation-fragment-ktx
     implementation "androidx.navigation:navigation-ui:$navigation" // For Kotlin use navigation-ui-ktx
-    implementation "androidx.legacy:legacy-support-v4:$support_v4"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle"
