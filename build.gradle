@@ -21,7 +21,6 @@ ext {
     core_ktx = '1.2.0-alpha04'
     constraint_layout = '2.0.0-beta2'
     navigation = '2.2.0-alpha02'
-    support_v4 = "1.0.0"
     lifecycle = '2.2.0-alpha04'
     material_component = '1.1.0-alpha10'
     retrofit = '2.6.1'
