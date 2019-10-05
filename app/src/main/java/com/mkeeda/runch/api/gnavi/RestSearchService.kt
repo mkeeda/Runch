@@ -1,5 +1,6 @@
 package com.mkeeda.runch.api.gnavi
 
+import com.mkeeda.runchdomain.entity.RestApiEnvelope
 import retrofit2.http.GET
 import retrofit2.http.Query
 

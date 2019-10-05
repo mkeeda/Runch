@@ -1,7 +1,6 @@
-package com.mkeeda.runch.api.gnavi
+package com.mkeeda.runchdomain.entity
 
-import com.mkeeda.runchdomain.entity.Restaurant
-
+// FIXME: REST API と意味被ってね？
 data class RestApiEnvelope(
     val total_hit_count: Int,
     val hit_per_page: Int,
