@@ -15,10 +15,6 @@ class RestListFragment : Fragment() {
         ViewModelProvider(this, RestListViewModelFactory()).get(RestListViewModel::class.java)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
@@ -27,7 +23,9 @@ class RestListFragment : Fragment() {
         val adapter = RestCardRecyclerViewAdapter()
         view.restlist_recycler_view.adapter = adapter
         viewModel.rests.observe(this) {
-            adapter.update(it)
+            it?.let {
+                adapter.submitList(it)
+            }
         }
         viewModel.loadRestaurants()
         return view

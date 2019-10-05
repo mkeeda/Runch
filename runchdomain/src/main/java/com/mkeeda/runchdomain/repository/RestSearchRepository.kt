@@ -1,7 +1,7 @@
 package com.mkeeda.runchdomain.repository
 
-import com.mkeeda.runchdomain.entity.Restaurant
+import com.mkeeda.runchdomain.entity.RestApiEnvelope
 
 interface RestSearchRepository {
-    suspend fun retrieveByLocation(latitude: Double, longitude: Double): List<Restaurant>
+    suspend fun retrieveByLocation(latitude: Double, longitude: Double): RestApiEnvelope
 }

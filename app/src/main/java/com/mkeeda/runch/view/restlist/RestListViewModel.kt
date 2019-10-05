@@ -3,19 +3,23 @@ package com.mkeeda.runch.view.restlist
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mkeeda.runchdomain.entity.Restaurant
-import com.mkeeda.runchdomain.repository.RestSearchRepository
+import com.mkeeda.runchdomain.entity.RestCardViewEntity
+import com.mkeeda.runchdomain.usecase.ShowRestUseCase
 import kotlinx.coroutines.launch
 
 class RestListViewModel(
-    private val restSearchRepository: RestSearchRepository
+    private val showRestUseCase: ShowRestUseCase
 ) : ViewModel() {
-    val rests = MutableLiveData<List<Restaurant>>()
+    val rests = MutableLiveData<List<RestCardViewEntity>>()
 
     fun loadRestaurants() {
         viewModelScope.launch {
             try {
-                rests.value = restSearchRepository.retrieveByLocation(latitude = 35.682444, longitude = 139.773611)
+                rests.value = showRestUseCase.randomSelectedRestsByLocation(
+                    latitude = 35.682444,
+                    longitude = 139.773611,
+                    order = 10
+                )
             } catch (error: Throwable) {
                 println(error)
             }
